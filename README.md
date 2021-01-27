@@ -6,9 +6,11 @@ This is the source code of Pattern Recognition paper: Towards Purchase Predictio
 Author: Zongxi Li zongxili2@gmail.com
 
 # Structure
+<pre>
 | PR-SI Code
 |-- Node_Emb_Stage_1  (Contains baseline code and edge list for generating user/item embedding)
 |-- Purchase_Pred_Stage_2  (Contains purchase prediction code and processed data)
+</pre>
 
 # Step 1: Node embedding
 We provide the code of node embedding methods utilized in the paper: MF, DeepWalk, Node2Vec, LINE, and LightGCN.
@@ -18,7 +20,7 @@ We provide the edge list (both weighted and binary) in the './data/jd' folder. Y
 Please put the generated embedding file into './Purchase_Pred_Stage_2/pretrained_embedding' for using in the prediction task.
 
 # Step 2: Purchase Prediction
-
+<pre>
 | ./Purchase Prediction
 |-- _ graph_application
 |   |-- _ jd_graph
@@ -41,7 +43,11 @@ Please put the generated embedding file into './Purchase_Pred_Stage_2/pretrained
 |-- setup.cfg
 |-- setup.py
 |-- README.md
+</pre>
 
 We provide the code of the proposed prediction model.
 
-You can modify configuration (i.e., batch size, latent dimensionality, pretrained embedding) in './Purchase_Pred_Stage_2/graph_application/jd_graph/config.json'.
+You can modify configuration (i.e., batch size, latent dimensionality, pretrained embedding) in 
+<pre>
+./Purchase_Pred_Stage_2/graph_application/jd_graph/config.json
+</pre>

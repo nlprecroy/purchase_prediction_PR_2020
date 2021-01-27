@@ -1,0 +1,158 @@
+Metadata-Version: 2.1
+Name: graph-model
+Version: 0.1.0
+Summary: A Lightweight Deep Learning Text Classification Library.
+Home-page: UNKNOWN
+Author: roy li
+Author-email: xmlee97@gmail.com
+License: UNKNOWN
+Description: # Deep-Classifier
+        
+        (base) roy@roy-Ubuntu:~/Desktop/Graph_Model$ python -m graph_model.train graph_application/jd_graph/config_cnn.json
+        ## Installation
+        
+        ```
+        cd deep_classisier
+        pip install -e .
+        ```
+        
+        ## Usage
+        ### data format
+        
+        jsonl
+        
+        ```
+        {"label": "label 0", "text": "text 0"}
+        {"label": "label 1", "text": "text 1"}
+        ...
+        ```
+        
+        ### configure file
+        
+        json
+        
+        ```json
+        {
+          "model": "xxx",  # [purchase]
+          "batch_size": 64,  # batch_size
+          "epoch": 20,
+          "data_path": "/path/to/[not split dataset]",
+          "train_path": "/path/to/[split set: train set]",
+          "dev_path": "/path/to/[split set: dev set]",
+          "test_path": "/path/to/[split set: test set]",
+          "log_path": "/path/to/log.txt",
+          "cv_fold": 10,  # for not split dataset
+          "split_round": 10,  # how many rounds to train for split data
+          "attention": {  # for fada
+            "epsilon": 0.25,
+          }
+        }
+        ```
+        
+        **Attention!** different models have different specific configure items, check the function `default_params()` of model to get them.  
+        
+        example
+        
+        `config.fada.subj.json`
+        
+        ```json
+        {
+          "model": "purchase",
+          "batch_size": 64,
+          "data_path": "./jd_graph/data.jsonl",
+          "pretrained_embedding_path": "pretrained_embedding/pretrained_100d_100n.pkl",
+          "dropout": 0.5,
+          "epochs": 20,
+          "attention": {
+            "epsilon": 0.25
+          }
+        }
+        ```
+        
+        
+        ### start to train
+        
+        #### for deep model
+        ```bash
+        $ python -m graph_model.train --help
+        
+        Usage: train.py [OPTIONS] <config_path>
+        
+        Options:
+          -v, --verbose INTEGER  verbose: 0 1 2 [default 2]
+          --help                 Show this message and exit.
+        ```
+        
+        example
+        
+        ```
+        python -m graph_model.train -v [0|1|2] /path/to/config.json
+        ```
+        
+        #### for fasttext
+        fasttext configure file
+        
+        ```json
+        {
+            "cv_fold": 10,
+            "data_path": "/path/to/[not split dataset]",
+            "train_path": "/path/to/[split set: train set]",
+            "dev_path": "/path/to/[split set: dev set]",
+            "test_path": "/path/to/[split set: test set]",
+            "log_path": "/path/to/log.txt",
+            "split_round": 10,  # how many rounds to train for split data
+            "embedding_size": 100,
+            "epoch": 5,
+            "metric": "accuracy",  # [accuracy|f1]
+            "model_dir": "./tmp_fasttext"  # dir to save tmp file
+        }
+        ```
+        
+        example
+        
+        `config.fasttext.subj.json`
+        
+        ```json
+        {
+          "epochs": 10,
+          "data_path": "./subj/all.jsonl",
+          "log_path": "results/fasttext_subj.txt"
+        }
+        ```
+        
+        ```
+        python -m graph_model.fasttexter /path/to/config.json
+        ```
+        
+        ### infer
+        
+        **Attention!** Not avaliable now, coming soon
+        
+        ```python
+        from graph_model import load_model
+        model = load_model("/path/to/model")
+        model.predict(["text 1", "text 2"])
+        ```
+        
+        ### serving
+        
+        **Attention!** Not avaliable now, coming soon
+        
+        ```
+        graph-model-serving --model /path/to/model --port xxx --workers
+        ```
+        
+        ```
+        curl -XPOST http://127.0.0.1:<port> -H 'Content-Type: application/json' -d '["text 1", "text 2"]'
+        ```
+        
+Keywords: graph model
+Platform: all
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7Topic :: Text Processing
+Classifier: Topic :: Text Processing :: Indexing
+Classifier: Topic :: Text Processing :: Linguistic
+Description-Content-Type: text/markdown

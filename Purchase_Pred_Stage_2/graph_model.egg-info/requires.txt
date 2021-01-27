@@ -1,6 +1,0 @@
-numpy
-sklearn
-tqdm
-boltons
-click
-fasttext

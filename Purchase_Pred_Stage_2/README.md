@@ -10,7 +10,7 @@ __email__ = 'zongxili2@gmail.com'
 cd Purchase_Pred_Stage_2
 pip install -e .
 ```
-
+<pre>
 ## Structure
 | ./Purchase Prediction
 |-- _ graph_application
@@ -33,6 +33,7 @@ pip install -e .
 |-- setup.cfg
 |-- setup.py
 |-- README.md
+</pre>
 
 ## Usage
 

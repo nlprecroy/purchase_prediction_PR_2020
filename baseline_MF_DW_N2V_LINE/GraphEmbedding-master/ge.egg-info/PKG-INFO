@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: ge
+Version: 0.0.0
+Summary: UNKNOWN
+Home-page: UNKNOWN
+License: MIT license
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.4
+Provides-Extra: cpu
+Provides-Extra: gpu
